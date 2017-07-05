@@ -1,0 +1,39 @@
+<div id="new_comments">
+    <div class="panel panel-comments">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-comment"></span>
+                最新评论
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#new_comment_list"></span>
+            </h3>
+        </div>
+        <div id="new_comment_list" class="list-group collapse in" style="padding: 10px;">
+            {% for comment in new_comment_list %}
+                <li class="list-group-item clearfix">
+                <div class="comment-tx">
+                    {% if comment.user.image %}
+                        <img src="{{ comment.user.img }}" width="40" height="40">
+                    {% else %}
+                        <img src="/static/images/aobama.png" width="40" height="40">
+                    {% endif %}
+                </div>
+                <div class="comment-info">
+                    <div class="comment-username">
+                        <a href="#">{{ comment.user.username }} 评论：</a>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <a href="#">
+                        {% autoescape on%}
+                        {{comment.text|slice:"30" }}
+                        {% endautoescape %}
+                        {% if comment.text|length > 30%}
+                        ......
+                        {% endif %}
+                    </a>
+                </div>
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>{% block title %}CodingBlog{% endblock %}</title>
+    {% block style %}
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/base.css">
+    {% endblock %}
+    {% block script %}
+        <script src="/static/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+
+    {% include "blog/nav.html" %}
+    <div id="main" class="container">
+        {% block main %}
+        {% endblock %}
+    </div>
+    {% block footer %}
+        {% include 'blog/footer.html' %}
+    {% endblock %}
+</body>
+</html>

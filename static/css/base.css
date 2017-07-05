@@ -1,0 +1,193 @@
+body {
+    background: url("/static/images/1.jpg") repeat scroll 0% 0% transparent;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+/*使footer置于底部*/
+body,html {
+    padding-top: 50px;
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+#block-main {
+    position: relative;
+    min-height: 100%;
+    _height: 100%;
+}
+
+h1, h2, h3 .h1, .h2, .h3 {
+    font-family:"Microsoft YaHei","WenQuanYi Micro Hei","tohoma,sans-serif";
+    font-weight: 700;
+}
+
+a {
+    color: #000;
+}
+
+a:focus {
+    color: #d9534f;
+}
+
+a:hover {
+    color: #d9534f;
+    text-decoration: none;
+}
+
+
+footer {
+    padding: 20px 0;
+    color: #fff;
+    text-align: center;
+    background-color: #222;
+}
+
+img.user-avatar {
+    width: 48px;
+    height: 48px;
+}
+
+div.entry {
+    padding: 0 10px;
+}
+
+div.blog-entry {
+    padding: 5px 0;
+    border-bottom: solid 1px rgb(51, 51, 51);
+}
+div.blog-entry:hover {
+    background-color: #fbfbff;
+}
+
+span.meta{
+    color: grey;
+}
+
+
+.panel-test {
+    box-shadow: 0px 0px 5px #C2C2C2;
+    border-color: #EEE;
+}
+
+.panel-test .panel-heading {
+    color: #EEE;
+    background-color: #222;
+    border-color: #EEE;
+}
+
+.panel-test .badge {
+    background-color: #843534;
+}
+
+.panel-test span.btn {
+    padding:0px;
+    margin-right: 5px;
+}
+
+.hot-post-title {
+    display: inline-block;
+    overflow: hidden;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list-group-item {
+    border: solid thin #EEE;
+}
+
+
+.panel-comments {
+    box-shadow: 0px 0px 5px #C2C2C2;
+    border-color: #EEE;
+}
+
+.panel-comments .panel-heading {
+    color: #EEE;
+    background-color: #222;
+    border-color: #EEE;
+}
+
+.panel-comments .badge {
+    background-color: #d9534f;
+}
+
+.panel-comments span.btn {
+    padding: 0px;
+    margin-right: 5px;
+}
+
+
+.panel-login-auth {
+    box-shadow: 0px 0px 5px #C2C2C2;
+    border-color: #EEE;
+}
+
+#links a {
+    margin-bottom: 5px;
+}
+
+.panel-login-auth .panel-heading {
+    color: #EEE;
+    background-color: #222;
+    border-color: #EEE;
+}
+
+.panel-login-auth .input-group-addon {
+    color: #EEE;
+    background-color: #3D4450;
+    border: 2px solid #3D4450;
+}
+
+.panel-login-auth span.btn {
+    padding:0px;
+    margin-right: 5px;
+}
+
+
+
+.btn-dark{
+    color:#fff;
+    border:none;
+    border-radius:0;
+    background-color:#414142
+}
+
+.btn-dark:hover{
+    color:#fff;
+    border:none;
+    background-color:#212122
+}
+
+
+.btn-reg-auth{
+    color: #FFF;
+    background-color: #2b669a;
+    border-color: #9acfea;
+}
+
+.btn-login-auth {
+    color: #FFF;
+    background-color: #2b669a;
+    border-color: #9acfea;
+}
+
+#auth-login {
+    max-width: 400px;
+    margin: 20px auto 20px;
+}
+
+#auth-login-form {
+    padding: 30px 20px;
+}
+
+#auth-login-form .btn {
+    width:48%;
+    padding:10px;
+}
+
+#auth-forgetpassword a {
+    color:red;
+    font-size: 14px;
+}

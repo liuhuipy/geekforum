@@ -1,0 +1,58 @@
+{% extends 'blog/index.html' %}
+
+{% block title %} {{ article.title }} {% endblock %}
+
+{% block main %}
+    {% block left %}
+    <div class="row col-md-8 col-lg-9">
+        <div id="article-page" class="well">
+            <div class="breadcrumb">
+                <span class="meta">
+                    {% if article.get_tags %}
+                        <span class="glyphicon glyphicon-tags"></span>
+                    {% endif %}
+                </span>
+                <span class="meta">
+                    {% if article.get_tags %}
+                        {% for tag in article.get_tags %}
+                            <a href="" class="btn btn-primary btn-xs" style="">{{ tag }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </span>
+                <span class="meta">
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{ article.author }}
+                </span>
+                <span class="meta">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    {{ article.create_time }}
+                </span>
+                <span class="meta">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    {{ article.reading_num }}
+                </span>
+                <span class="meta">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    {{ article.like_num }}
+                </span>
+            </div>
+            <div class="article-title">
+                <h2 style="text-align: center;">{{ article.title }}</h2>
+            </div>
+            <div id="article">
+                <div class="article-content">
+                    {% autoescape off %}
+                        {{ article.content }}
+                    {% endautoescape %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block right %}
+        {% include 'blog/right.html' %}
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

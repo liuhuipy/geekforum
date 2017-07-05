@@ -1,0 +1,85 @@
+
+{% for article in article_list %}
+    <div class="list-group-item blog-entry">
+        <div class="entry media">
+            <div class="media-left media-middle">
+                <a class="list-avatar-link" href="/"><img class="user-avatar" style="width: 80px; height: 80px;" src="{{ MEDIA_URL }}{{ article.author.image }}"></a>
+            </div>
+            <div class="media-body media-middle">
+                <div class="">
+                    <div class="">
+                        <h4>
+                            <span class="media">
+                                {% if article.article_from %}
+                                    <a href="" class="btn btn-warning btn-xs">
+                                        转载
+                                    </a>
+                                {% else %}
+                                    <a href="" class="btn btn-dark btn-xs">
+                                        原创
+                                    </a>
+                                {% endif %}
+                            </span>
+                            <span class="media">
+                                <a href="{% url 'category-view' article.category.pk %}" class="btn btn-success btn-xs">{{ article.category }}</a>
+                            </span>
+                            <span class="media">
+                                <a href="{% url 'article-view' article.pk %}" target="_blank" class="entry-link">{{ article.title }}</a>
+                                {% if article.is_top %}
+                                    <a href="" class="btn btn-danger btn-xs">精</a>
+                                {% endif %}
+                            </span>
+                            <span class="media pull-right">
+                                <a href="{% url 'article-view' article.id %}" target="_blank" class="btn btn-sm btn-info hidden-sm">阅读全文</a>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="">
+                    <p>
+                        {% autoescape off %}
+                            {{ article.summary|slice:'40' }}
+                        {% endautoescape %}
+                        {% if article.summary|length > 40 %}
+                            ......
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="">
+                    <span class="meta">
+                        {% if article.get_tags %}
+                            <span class="glyphicon glyphicon-tags"></span>
+                        {% endif %}
+                    </span>
+                    <span class="meta">
+                        {% if article.get_tags %}
+                            {% for tag in article.get_tags %}
+                                <a href="" class="btn btn-primary btn-xs" style="">{{ tag }}</a>
+                            {% endfor %}
+                        {% endif %}
+                    </span>
+                    <span class="meta">
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{ article.author }}
+                    </span>
+                    <span class="meta">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        {{ article.create_time }}
+                    </span>
+                    <span class="meta">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        {{ article.reading_num }}
+                    </span>
+                    <span class="meta">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        {{ article.like_num }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div>
+    1
+</div>
+

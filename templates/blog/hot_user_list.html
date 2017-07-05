@@ -1,0 +1,16 @@
+<div id="user-list">
+    <div class="panel panel-test">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-user"></span>
+                活跃用户
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#hot-user-list"></span>
+            </h3>
+        </div>
+        <div id="hot-user-list" class="list-group collapse in" style="padding: 10px;">
+            {% for user in hot_user_list %}
+                <a class="list-avatar-link" href="/"><img class="user-avatar" style="width: 55px; height: 55px; padding-bottom: 5px;" src="{{ MEDIA_URL }}{{ user.image }}"></a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

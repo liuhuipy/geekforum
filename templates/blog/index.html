@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+
+<div id="block-main">
+    {% block main %}
+        {% block left %}
+            <div id="left-list" class="col-md-8 col-lg-9">
+                {% include 'blog/home_post.html' %}
+            </div>
+        {% endblock %}
+            {% block right %}
+                {% include 'blog/right.html' %}
+            {% endblock %}
+    {% endblock %}
+</div>

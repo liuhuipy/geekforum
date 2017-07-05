@@ -1,0 +1,19 @@
+<div id="hot-posts">
+    <div class="panel panel-test">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-flag"></span>
+                热门文章
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#hot-post-list"></span>
+            </h3>
+        </div>
+        <ul id="hot-post-list" class="list-group collapse in">
+            {% for article in hot_article_list %}
+                <li class="list-group-item">
+                <span class="hot-post-title"><a href="{% url 'article-view' article.id %}" target="_blank">{{ article.title }}</a></span>
+                <span class="badge">{{ article.reading_num }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

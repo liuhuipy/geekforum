@@ -1,0 +1,16 @@
+<div id="link-list">
+    <div class="panel panel-test">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-link"></span>
+                友情链接
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#links"></span>
+            </h3>
+        </div>
+        <div id="links" class="list-group collapse in" style="padding: 10px;">
+            {% for link in link_list %}
+                <a title="{{ link.name }}" target="_blank" href="{{ link.url }}" class="btn btn-xs btn-{{ link.color }}">{{ link.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

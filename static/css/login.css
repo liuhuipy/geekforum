@@ -1,0 +1,129 @@
+
+h1{
+	font-size:40px;
+	color:#fff;
+	margin:50px 0px 80px 0px;
+	text-align:center;
+}
+.w3layouts{
+	width:70%;
+	margin:0 auto;
+}
+
+
+body {
+    background: url("/static/images/1.jpg") repeat scroll 0% 0% transparent;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.signin-agile,.signup-agileinfo {
+    width: 35%;
+    float: left;
+	background:#fff;
+    padding: 30px;
+	transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+	height:380px;
+}
+
+.signin-agile h2 .signup-agileinfo h3{
+    font-size: 25px;
+    color: #7d7d7d;
+    margin-bottom: 20px;
+}
+
+.signup-agileinfo{
+	background: rgba(233, 30, 99, 0.76);
+}
+.signup-agileinfo h3{
+	color:#fff;
+}
+.signup-agileinfo p{
+	color:#fff;
+	font-size:14px;
+	line-height:30px;
+}
+
+input[type="text"],input[type="password"]{
+	width:93.5%;
+	padding: 15px;
+	border:1px solid #7d7d7d;
+	outline:none;
+	font-size:14px;
+	margin-bottom:20px;
+	border-radius:25px;
+}
+
+
+form ul {
+	float: left;
+}
+ul li {
+	list-style: none;
+	display: inline-block;
+}
+ul li input[type="checkbox"] {
+	display: none;
+}
+ul li input[type="checkbox"]+label {
+	position: relative;
+	padding-left: 25px;
+	border: #F0F8FF;
+	color: #7d7d7d;
+	display: inline-block;
+	font-size: 14px;
+
+}
+
+ul li input[type="checkbox"]+label span:first-child {
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	border: 1px solid #7d7d7d;
+	position: absolute;
+	top: 1px;
+	left: 4px;
+	bottom: 4px;
+}
+ul li input[type="checkbox"]:checked+label span:first-child:before {
+	content: "";
+	background: url(../images/tick.png)no-repeat;
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	font-size: 10px;
+	width: 10px;
+	height: 10px;
+}
+
+form a {
+	color: #7d7d7d;
+	float: right;
+	font-size: 14px;
+
+}
+input[type="submit"]{
+	background:#e91e63;
+	padding:13px 0;
+	font-size:16px;
+	color:#fff;
+	cursor:pointer;
+	outline:none;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	width:100%;
+	border:none;
+	margin-top:25px;
+	border-radius:25px;
+}
+
+input[type="submit"]:hover{
+	background:#081148;
+}
