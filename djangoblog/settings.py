@@ -143,11 +143,9 @@ STATICFILES_DIRS = (
 
 #Email setting
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.liuhui.163.com"
-#EMAIL_PORT = 994
-#EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "liuhui_py@163.com"
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
-EMAIL_TOKEN_SALT = "djangoblog"
+DEFAULT_FROM_EMAIL = '1902246311@qq.com'
 
 PAGE_NUM = 15

@@ -5,12 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>用户登录</title>
+    <title>{% block title %}用户登录{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/login.css">
 </head>
 <body>
-    {% csrf_token %}
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,7 +34,7 @@
                     <a href="{% url 'login' %}" id="nav-login" data-toggle="modal">登陆</a>
                 </li>
                 <li>
-                    <a id="nav-register" data-toggle="modal">注册</a>
+                    <a href="{% url 'register' %}" id="nav-register" data-toggle="modal">注册</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -43,29 +42,44 @@
     </nav>
     {% block userinfo %}
     <div class="signin-agile col-md-offset-4 col-md-4">
-        <h2>登录</h2>
+        <div class="panel-heading">
+            <h1 class="panel-title">请登录</h1>
+            <ul>
+                {% for key, error in errors.items %}
+                    <li><span style="text-align: center; color: #953b39;">{{ error }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            <input name="username" id="username" type="text" placeholder="用户名">
-            <input name="password" id="password" type="password" placeholder="密码">
-            <div class="error btns login-form-tips" id="jsLoginTips">
-                {% for key, error in form_errors.item %}
-                    {{ error }}
-                {% endfor %}
-                {% if not form_error %} {{ msg }} {% endif %}
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
+                    <input class="form-control" name="username" id="username" type="text" placeholder="用户名">
+
+                </div>
             </div>
-            <!--<input type="text" name="name" class="name" placeholder="用户名" required="">
-            <input type="password" name="password" class="password" placeholder="密码" required="">
-            -->
-            <ul>
-                <li>
-                    <input type="checkbox" id="brand1" value="">
-                    <label for="brand1"><span></span>记住密码</label>
-                </li>
-            </ul>
-            <a href="#">忘记密码?</a><br>
-            <div class="clear"></div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </div>
+                    <input class="form-control" name="password" id="password" type="password" placeholder="密码">
+                </div>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me">记住我
+                </label>
+                <a href="#">忘记密码?</a><br>
+            </div>
+
             <input type="submit" value="登录">
+
         </form>
     </div>
     {% endblock %}

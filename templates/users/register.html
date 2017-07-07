@@ -1,0 +1,33 @@
+{% extends 'users/login.html' %}
+
+{% block title %}用户注册{% endblock %}
+
+{% block userinfo %}
+    <div class="signin-agile col-md-offset-4 col-md-4">
+        <div class="panel-heading">
+            <h1 class="panel-title">快速注册</h1>
+            <ul>
+                {% for key, error in errors.items %}
+                    <li><span style="text-align: center; color: #953b39;">{{ error }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" name="username" id="username" type="text" placeholder="用户名由字母(开头)、数字、下划线组成">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="email" id="email" type="text" placeholder="请输入你的邮箱">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" id="password" type="password" placeholder="密码不长度应在(6-16)字符之间">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="res_password" id="res_password" type="password" placeholder="请再次输入密码">
+            </div>
+            <input type="submit" value="提交注册">
+
+        </form>
+    </div>
+{% endblock %}

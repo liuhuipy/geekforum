@@ -1,23 +1,10 @@
-
-h1{
-	font-size:40px;
-	color:#fff;
-	margin:50px 0px 80px 0px;
-	text-align:center;
-}
-.w3layouts{
-	width:70%;
-	margin:0 auto;
-}
-
-
 body {
     background: url("/static/images/1.jpg") repeat scroll 0% 0% transparent;
     background-size: 100%;
     background-attachment: fixed;
 }
 
-.signin-agile,.signup-agileinfo {
+.signin-agile {
     width: 35%;
     float: left;
 	background:#fff;
@@ -27,21 +14,24 @@ body {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
-	height:380px;
 }
 
-.signin-agile h2 .signup-agileinfo h3{
-    font-size: 25px;
-    color: #7d7d7d;
+.signup-agileinfo {
+	width: 35%;
+    float: left;
+	background:#fff;
+    padding: 30px;
+	transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+h1{
     margin-bottom: 20px;
 }
 
-.signup-agileinfo{
-	background: rgba(233, 30, 99, 0.76);
-}
-.signup-agileinfo h3{
-	color:#fff;
-}
 .signup-agileinfo p{
 	color:#fff;
 	font-size:14px;
@@ -49,13 +39,11 @@ body {
 }
 
 input[type="text"],input[type="password"]{
-	width:93.5%;
 	padding: 15px;
 	border:1px solid #7d7d7d;
 	outline:none;
 	font-size:14px;
 	margin-bottom:20px;
-	border-radius:25px;
 }
 
 
@@ -127,3 +115,4 @@ input[type="submit"]{
 input[type="submit"]:hover{
 	background:#081148;
 }
+
