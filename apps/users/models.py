@@ -49,7 +49,7 @@ class UserProfile(AbstractUser):
     email = models.EmailField(max_length=64,verbose_name=u'邮箱',unique=True)
     password = models.CharField(max_length=128,verbose_name=u'密码')
     profile = models.TextField(max_length=200,verbose_name=u'简介',blank=True,null=True)
-    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default="/static/images/user/default.jpg", verbose_name=u'用户头像')
+    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default="default.jpg", verbose_name=u'用户头像')
     au = models.IntegerField(default=0, verbose_name=u'用户活跃度')
 
     topic_num = models.IntegerField(default=0,verbose_name=u'文章数')

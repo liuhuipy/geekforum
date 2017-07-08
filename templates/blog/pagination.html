@@ -1,0 +1,35 @@
+{% load mytags %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li class="previous">
+            <a href="?page={{page_obj.previous_page_number}}">上一页 <span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="previous disabled">
+            <a>上一页 <span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
+
+    {% pagination page_obj paginator 7 3 as page_list %}
+    {{ page_list|safe }}
+
+
+    {% if page_obj.has_next%}
+        <li class="next">
+            <a href="?page={{page_obj.next_page_number}}">下一页 <span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="next disabled">
+            <a>下一页 <span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
+</ul>
+<script>
+    $(document).ready(function(){
+    $('.pagination li a').each(function(){
+        if ( $(this).html() == {{ page_obj.number }} ){
+            $(this).parent().addClass('active')
+        }
+    });
+});
+</script>

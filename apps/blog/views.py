@@ -39,7 +39,6 @@ class IndexView(BaseMixin, ListView):
         return article_list
 
     def get_context_data(self, **kwargs):
-        kwargs['category_list'] = Category.objects.all().order_by('rank')
         return super(IndexView, self).get_context_data(**kwargs)
 
 
@@ -87,5 +86,6 @@ class TagView(BaseMixin, ListView):
 
     def get_context_data(self, **kwargs):
         return super(TagView, self).get_context_data(**kwargs)
+
 
 
