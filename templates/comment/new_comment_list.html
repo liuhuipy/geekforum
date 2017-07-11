@@ -12,7 +12,7 @@
                 <li class="list-group-item clearfix">
                 <div class="comment-tx">
                     {% if comment.user.image %}
-                        <img src="{{ comment.user.img }}" width="40" height="40">
+                        <img src="{{ MEDIA_URL }}{{ comment.user.image }}" width="40" height="40">
                     {% else %}
                         <img src="/static/images/aobama.png" width="40" height="40">
                     {% endif %}
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="comment-content">
-                    <a href="#">
+                    <a href="{% url 'article-view' comment.article.pk %}">
                         {% autoescape on%}
                         {{comment.text|slice:"30" }}
                         {% endautoescape %}

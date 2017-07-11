@@ -5,10 +5,7 @@ from blog.models import Article, Category, Link
 from comments.models import Comment
 from users.models import UserProfile
 from djangoblog import settings
-from django.db.models import Q
 from django.core.cache import caches
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 cache = caches['default']
 
@@ -58,6 +55,8 @@ class ArticleDetailView(BaseMixin, DetailView):
         return obj
 
     def get_context_data(self, **kwargs):
+        article_id = self.kwargs.get('article_id', '')
+        kwargs['comment_list'] = Comment.objects.filter(article_id=article_id).all()
         return super(ArticleDetailView, self).get_context_data(**kwargs)
 
 

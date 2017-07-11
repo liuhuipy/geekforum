@@ -19,6 +19,11 @@ ARTICLE_FROM = {
     1: u'转载',
 }
 
+IS_READ = {
+    0: u'未读',
+    1: u'已读',
+}
+
 
 class Category(models.Model):
     name = models.CharField(max_length=40, verbose_name=u'类型名称')
@@ -78,6 +83,7 @@ class Article(models.Model):
         return self.title
 
 
+
 class Link(models.Model):
     name = models.CharField(max_length=40, verbose_name=u'链接名')
     url = models.URLField(max_length=40, verbose_name=u'链接地址')
@@ -94,5 +100,22 @@ class Link(models.Model):
         return self.name
 
 
+class Notification(models.Model):
+    title = models.CharField(max_length=100, verbose_name=u'标题')
+    text = models.TextField(verbose_name=u'内容')
+    url = models.CharField(max_length=200, verbose_name=u'连接', null=True, blank=True)
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                  default=None, blank=True, null=True,
+                                  related_name='from_user_notification_set',
+                                  verbose_name=u'发送者')
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='to_user_notification_set', verbose_name=u'接收者')
+    type = models.CharField(max_length=20, verbose_name=u'类型', null=True, blank=True)
+    is_read = models.IntegerField(default=0, choices=IS_READ.items(), verbose_name=u'是否读过')
 
+    create_time = models.DateTimeField(default=timezone.now, verbose_name=u'创建时间')
+    update_time = models.DateTimeField(verbose_name=u'修改时间', blank=True, null=True)
 
+    class Meta:
+        ordering = ['-create_time']
+        verbose_name = u'消息'
+        verbose_name_plural = verbose_name

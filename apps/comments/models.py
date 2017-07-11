@@ -10,7 +10,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article,verbose_name=u'文章')
     text = models.TextField(verbose_name=u'评论')
     is_removed = models.BooleanField(default=False)
-    parentcomment = models.ForeignKey('self',default=None,blank=True,null=True,verbose_name=u'父评论')
+    parent = models.ForeignKey('self',default=None,blank=True,null=True,verbose_name=u'父评论')
     likes_count = models.PositiveIntegerField(default=0,verbose_name=u'点赞数')
 
     create_time = models.DateTimeField(verbose_name=u'创建时间', default=datetime.now)

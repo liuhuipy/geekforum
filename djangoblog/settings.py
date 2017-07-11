@@ -41,15 +41,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'xadmin',
+    'DjangoUeditor',
     'crispy_forms',
+    'haystack',
     'blog',
     'comments',
     'search',
     'users',
-    'DjangoUeditor',
-    #'ckeditor',
-    #'ckeditor_uploader',
+
+
 ]
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -148,4 +156,4 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 DEFAULT_FROM_EMAIL = '1902246311@qq.com'
 
-PAGE_NUM = 12
+PAGE_NUM = 8

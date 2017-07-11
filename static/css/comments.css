@@ -1,0 +1,47 @@
+#anchor-quote:target {
+    float: left;
+    margin: -100px;
+}
+
+.btn-comments {
+    color: #FFF;
+    background-color: #D9534F;
+    border-color: #D43F3A;
+}
+
+.comment ul {
+    padding-left: 0px;
+}
+
+.comment ul li {
+    list-style-type: none;
+    border-top: 1px dotted #ddd;
+    padding: 10px;
+}
+
+.comment-tx {
+    float: left;
+}
+
+.comment-content {
+    padding-left:50px;
+    word-break: break-all;
+}
+
+.comment-content h1{
+    margin:0px;
+    font-size:15px;
+    padding-bottom:10px;
+}
+
+.comment-edit {
+    padding-left:50px;
+    margin-bottom:20px;
+}
+
+.comment-edit textarea{
+    width:100%;
+    margin-bottom:10px;
+}
+
+

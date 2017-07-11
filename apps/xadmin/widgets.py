@@ -4,17 +4,13 @@ Form Widget classes specific to the Django admin site.
 from __future__ import absolute_import
 from itertools import chain
 from django import forms
-try:
-    from django.forms.widgets import ChoiceWidget as RadioChoiceInput
-except:
-    from django.forms.widgets import RadioFieldRenderer, RadioChoiceInput
+from django.forms.widgets import RadioFieldRenderer, RadioChoiceInput
 from django.utils.encoding import force_text
-
 from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
 from django.utils.translation import ugettext as _
 
-from .util import vendor, DJANGO_11
+from .util import vendor
 
 
 class AdminDateWidget(forms.DateInput):
@@ -64,27 +60,15 @@ class AdminSplitDateTime(forms.SplitDateTimeWidget):
     """
     A SplitDateTime Widget that has some admin-specific styling.
     """
-
     def __init__(self, attrs=None):
         widgets = [AdminDateWidget, AdminTimeWidget]
         # Note that we're calling MultiWidget, not SplitDateTimeWidget, because
         # we want to define widgets.
         forms.MultiWidget.__init__(self, widgets, attrs)
 
-    def render(self, name, value, attrs=None):
-        if DJANGO_11:
-            input_html = [ht for ht in super(AdminSplitDateTime, self).render(name, value, attrs).split('\n') if ht != '']
-            # return input_html
-            return mark_safe('<div class="datetime clearfix"><div class="input-group date bootstrap-datepicker"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>%s'
-                             '<span class="input-group-btn"><button class="btn btn-default" type="button">%s</button></span></div>'
-                             '<div class="input-group time bootstrap-clockpicker"><span class="input-group-addon"><i class="fa fa-clock-o">'
-                             '</i></span>%s<span class="input-group-btn"><button class="btn btn-default" type="button">%s</button></span></div></div>' % (input_html[0], _(u'Today'), input_html[1], _(u'Now')))
-        else:
-            return super(AdminSplitDateTime, self).render(name, value, attrs)
-
     def format_output(self, rendered_widgets):
         return mark_safe(u'<div class="datetime clearfix">%s%s</div>' %
-                         (rendered_widgets[0], rendered_widgets[1]))
+                        (rendered_widgets[0], rendered_widgets[1]))
 
 
 class AdminRadioInput(RadioChoiceInput):
@@ -105,7 +89,7 @@ class AdminRadioInput(RadioChoiceInput):
             return mark_safe(u'<div class="radio"><label%s>%s %s</label></div>' % (label_for, self.tag(), choice_label))
 
 
-class AdminRadioFieldRenderer(forms.RadioSelect):
+class AdminRadioFieldRenderer(RadioFieldRenderer):
 
     def __iter__(self):
         for i, choice in enumerate(self.choices):
@@ -124,15 +108,11 @@ class AdminRadioSelect(forms.RadioSelect):
 
 
 class AdminCheckboxSelect(forms.CheckboxSelectMultiple):
-
     def render(self, name, value, attrs=None, choices=()):
         if value is None:
             value = []
         has_id = attrs and 'id' in attrs
-        if DJANGO_11:
-            final_attrs = self.build_attrs(attrs, extra_attrs={'name': name})
-        else:
-            final_attrs = self.build_attrs(attrs, name=name)
+        final_attrs = self.build_attrs(attrs, name=name)
         output = []
         # Normalize to strings
         str_values = set([force_text(v) for v in value])
@@ -159,7 +139,6 @@ class AdminCheckboxSelect(forms.CheckboxSelectMultiple):
 
 
 class AdminSelectMultiple(forms.SelectMultiple):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'select-multi'}
         if attrs is not None:
@@ -169,13 +148,12 @@ class AdminSelectMultiple(forms.SelectMultiple):
 
 class AdminFileWidget(forms.ClearableFileInput):
     template_with_initial = (u'<p class="file-upload">%s</p>'
-                             % forms.ClearableFileInput.initial_text)
+                             % forms.ClearableFileInput.template_with_initial)
     template_with_clear = (u'<span class="clearable-file-input">%s</span>'
-                           % forms.ClearableFileInput.clear_checkbox_label)
+                           % forms.ClearableFileInput.template_with_clear)
 
 
 class AdminTextareaWidget(forms.Textarea):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'textarea-field'}
         if attrs is not None:
@@ -184,7 +162,6 @@ class AdminTextareaWidget(forms.Textarea):
 
 
 class AdminTextInputWidget(forms.TextInput):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'text-field'}
         if attrs is not None:
@@ -193,7 +170,6 @@ class AdminTextInputWidget(forms.TextInput):
 
 
 class AdminURLFieldWidget(forms.TextInput):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'url-field'}
         if attrs is not None:
@@ -202,7 +178,6 @@ class AdminURLFieldWidget(forms.TextInput):
 
 
 class AdminIntegerFieldWidget(forms.TextInput):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'int-field'}
         if attrs is not None:
@@ -211,7 +186,6 @@ class AdminIntegerFieldWidget(forms.TextInput):
 
 
 class AdminCommaSeparatedIntegerFieldWidget(forms.TextInput):
-
     def __init__(self, attrs=None):
         final_attrs = {'class': 'sep-int-field'}
         if attrs is not None:

@@ -1,14 +1,16 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render
 from django.http import HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.http.response import HttpResponseRedirect
-from django.views.decorators.csrf import csrf_protect
 from django.core.urlresolvers import reverse
-from django.template import loader
-from django.core.cache import cache
-from django.contrib import messages
 from django.utils import timezone
+from django.views.generic import ListView, DetailView
+
+from blog.models import Article
+from users.models import UserProfile
+from djangoblog import settings
+
 
 from .forms import LoginForm, RegisterForm, ResetPasswordForm, ForgetPasswordForm
 
@@ -55,6 +57,7 @@ def register(request):
         user = None
     return render(request, 'users/register.html')
 
+@login_required
 def reset_password(request):
     if request.method == 'POST':
         reset_form = ResetPasswordForm(request)
@@ -64,12 +67,26 @@ def reset_password(request):
             user.set_password(password)
             user.updated = timezone.now()
             user.save()
-            return render(request, 'users/reset_password.html', {'success_reset': u'您的账号密码修改成功！'})
+            return render(request, 'users/reset_password.html', {'success_message': u'您的账号密码修改成功！'})
         else:
             return render(request, 'users/reset_password.html', {'errors': reset_form.errors})
     else:
-        reset_form = ResetPasswordForm()
+        reset_form = ResetPasswordForm(request)
+        user = None
     return render(request, 'users/reset_password.html')
 
 
+class UserView(DetailView):
+    model = UserProfile
+    template_name = 'users/userinfo.html'
+    context_object_name = 'user'
+    pk_url_kwarg = 'user_id'
 
+
+    def get_queryset(self):
+        pass
+
+    def get_context_data(self, **kwargs):
+        user_id = self.kwargs.get('user_id', '')
+        kwargs['article_list'] = Article.objects.filter(author__id=user_id).order_by('-create_time')
+        return super(UserView, self).get_context_data(**kwargs)

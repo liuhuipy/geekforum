@@ -1,0 +1,56 @@
+<div>
+    <h3 style="color: #761c19;">文章评论</h3>
+</div>
+<div class="well">
+    <div class="comment">
+        <div class="comment-tx">
+            {% if user.image %}
+                <img src="{{ MEDIA_URL }}{{ user.image }} " width="40">
+            {% else %}
+                <img src="{{ MEDIA_URL }}default.png" width="40">
+            {% endif %}
+        </div>
+        <div class="comment-edit clearfix">
+            <form id="comment-form" action="{% url 'comment-view' article.pk %}" method="post" role="form">
+                {% csrf_token %}
+                <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="请输入评论，最多200字"></textarea>
+                <button type="submit" class="btn btn-comments pull-right">提交评论</button>
+            </form>
+        </div>
+        <ul>
+            {% for comment in comment_list%}
+            <li>
+            <div class="comment-tx">
+                {% if comment.user.image %}
+                <img src='{{ MEDIA_URL }}{{ comment.user.image }}' width="40">
+                {%else%}
+                <img src="{{ MEDIA_URL }}default.png" width="40">
+                {%endif%}
+            </div>
+            <div class="comment-content">
+                <a><h1>{{comment.user.username}}</h1></a>
+                {% if comment.parent %}
+                <div class="comment-quote">
+                    <p>
+                        <a>@{{comment.parent.user.username}}：</a>
+                        {% autoescape on %}
+                        {{comment.parent.text}}
+                        {% endautoescape %}
+                    </p>
+                </div>
+                {% endif %}
+                <p></p>
+                <p>
+                    评论：
+                    {% autoescape on %}
+                    {{comment.text}}
+                    {% endautoescape %}
+                </p>
+                <p>{{comment.create_time|date:"Y-m-d H:i:s" }} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a class='quote' href="#anchor-quote" onclick="return CommentQuote('{{comment.user.username}}',{{comment.id}});">回复</a></p>
+            </div>
+            </li>
+            {% endfor%}
+        </ul>
+    </div>
+</div>
+

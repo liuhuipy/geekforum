@@ -36,13 +36,13 @@
                         </a>
                         <ul class="dropdown-menu navbar-right">
                             <li>
-                                <a href="#">
+                                <a href="{% url 'user-view' user.pk %}" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span>
                                     个人主页
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{% url 'reset-password' %}" target="_blank" data-toggle="modal">
                                     <span class="glyphicon glyphicon-lock"></span>
                                     更改密码
                                 </a>
