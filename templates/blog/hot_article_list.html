@@ -10,7 +10,9 @@
         <ul id="hot-post-list" class="list-group collapse in">
             {% for article in hot_article_list %}
                 <li class="list-group-item">
-                <span class="hot-post-title"><a href="{% url 'article-view' article.id %}" target="_blank">{{ article.title }}</a></span>
+                <a href="{% url 'article-view' article.id %}" target="_blank">
+                    <span class="hot-post-title">{{ article.title }}</span>
+                </a>
                 <span class="badge">{{ article.reading_num }}</span>
                 </li>
             {% endfor %}

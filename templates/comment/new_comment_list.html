@@ -17,7 +17,7 @@
                         <img src="/static/images/aobama.png" width="40" height="40">
                     {% endif %}
                 </div>
-                <div class="comment-info">
+                <div class="comment-content">
                     <div class="comment-username">
                         <a href="#">{{ comment.user.username }} 评论：</a>
                     </div>
@@ -25,9 +25,9 @@
                 <div class="comment-content">
                     <a href="{% url 'article-view' comment.article.pk %}">
                         {% autoescape on%}
-                        {{comment.text|slice:"30" }}
+                        {{comment.text|slice:"15" }}
                         {% endautoescape %}
-                        {% if comment.text|length > 30%}
+                        {% if comment.text|length > 15%}
                         ......
                         {% endif %}
                     </a>
