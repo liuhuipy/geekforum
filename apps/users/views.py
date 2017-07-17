@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.http import HttpResponsePermanentRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.utils import timezone
 from django.views.generic import ListView, DetailView
+from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
+import PIL
 
 from blog.models import Article
 from users.models import UserProfile
@@ -16,7 +18,7 @@ from .forms import LoginForm, RegisterForm, ResetPasswordForm, ForgetPasswordFor
 
 # Create your views here.
 
-
+@csrf_protect
 def login(request):
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
@@ -35,12 +37,12 @@ def login(request):
         user = None
     return render(request, 'users/login.html')
 
-
+@csrf_protect
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect(reverse("index-view"))
 
-
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
@@ -57,36 +59,24 @@ def register(request):
         user = None
     return render(request, 'users/register.html')
 
+
+@csrf_protect
 @login_required
 def reset_password(request):
     if request.method == 'POST':
-        reset_form = ResetPasswordForm(request)
+        reset_form = ResetPasswordForm(request.POST)
         if reset_form.is_valid():
-            user = request.user
-            password = reset_form.cleaned_data.get('password')
-            user.set_password(password)
-            user.updated = timezone.now()
-            user.save()
-            return render(request, 'users/reset_password.html', {'success_message': u'您的账号密码修改成功！'})
-        else:
-            return render(request, 'users/reset_password.html', {'errors': reset_form.errors})
+            user = reset_form.save()
+            if user is not None:
+                messages.success(request, '新密码设置成功！请重新登录')
+                logout(request)
+                return HttpResponseRedirect(reverse("login"))
+            else:
+                messages.error(request, '当前密码输入错误')
+                return render(request, 'users/reset_password.html', {'errors': reset_form.errors})
     else:
         reset_form = ResetPasswordForm(request)
         user = None
     return render(request, 'users/reset_password.html')
 
 
-class UserView(DetailView):
-    model = UserProfile
-    template_name = 'users/userinfo.html'
-    context_object_name = 'user'
-    pk_url_kwarg = 'user_id'
-
-
-    def get_queryset(self):
-        pass
-
-    def get_context_data(self, **kwargs):
-        user_id = self.kwargs.get('user_id', '')
-        kwargs['article_list'] = Article.objects.filter(author__id=user_id).order_by('-create_time')
-        return super(UserView, self).get_context_data(**kwargs)

@@ -50,8 +50,6 @@ class Article(models.Model):
     tags = models.CharField(max_length=100, null=True, blank=True, verbose_name=u'标签', help_text=u'用逗号分隔')
     content = UEditorField(verbose_name=u'正文', toolbars='full', width='600', height='300', imagePath='article/ueditor/',filePath='article/ueditor',default='')
     reading_num = models.IntegerField(default=0,verbose_name=u'阅读量')
-    comment_num = models.IntegerField(default=0,verbose_name=u'评论数')
-    like_num = models.IntegerField(default=0,verbose_name=u'点赞数')
 
     is_top = models.BooleanField(default=False,verbose_name=u'是否置顶')
     rank = models.IntegerField(default=0,verbose_name=u'排序')

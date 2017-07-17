@@ -6,9 +6,9 @@ from .models import Article, Category, Link
 
 
 class ArticleAdmin(object):
-    list_display = ['author', 'category', 'tags', 'title', 'article_from', 'reading_num', 'comment_num', 'like_num', 'is_top', 'rank', 'status', 'create_time', 'update_time']
-    search_fields = ['author', 'category', 'tags', 'title', 'summary', 'article_from', 'content', 'reading_num', 'comment_num', 'like_num', 'is_top', 'rank', 'status']
-    list_filter = ['author__username', 'category__name', 'tags', 'summary', 'article_from', 'content', 'reading_num', 'comment_num', 'like_num', 'is_top', 'rank', 'status', 'create_time', 'update_time']
+    list_display = ['author', 'category', 'tags', 'title', 'article_from', 'reading_num', 'comment_num', 'is_top', 'rank', 'status', 'create_time', 'update_time']
+    search_fields = ['author', 'category', 'tags', 'title', 'summary', 'article_from', 'content', 'reading_num', 'comment_num', 'is_top', 'rank', 'status']
+    list_filter = ['author__username', 'category__name', 'tags', 'summary', 'article_from', 'content', 'reading_num', 'comment_num', 'is_top', 'rank', 'status', 'create_time', 'update_time']
     readonly_fields = []
     style_fields = {'content': 'ueditor'}
     relfield_style = 'fk-ajax'

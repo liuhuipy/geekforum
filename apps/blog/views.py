@@ -1,11 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.shortcuts import render, render_to_response
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.generic import ListView, TemplateView, View, DetailView
 from blog.models import Article, Category, Link
 from comments.models import Comment
 from users.models import UserProfile
 from djangoblog import settings
 from django.core.cache import caches
+from django.contrib import messages
+from django.core.urlresolvers import reverse
+
+from blog.forms import UEditorForm
 
 cache = caches['default']
 
@@ -17,7 +21,7 @@ class BaseMixin(object):
         context['category_list'] = Category.objects.all()[:10]
         context['hot_article_list'] = Article.objects.order_by("-reading_num")[:10]
         context['new_comment_list'] = Comment.objects.order_by("-create_time")[:5]
-        context['hot_user_list'] = UserProfile.objects.order_by("-topic_num")[:5]
+        context['hot_user_list'] = UserProfile.objects.order_by("au")[:8]
         context['link_list'] = Link.objects.order_by('-create_time')
 
         colors = ['primary', 'success', 'info', 'warning', 'danger']
@@ -86,5 +90,24 @@ class TagView(BaseMixin, ListView):
     def get_context_data(self, **kwargs):
         return super(TagView, self).get_context_data(**kwargs)
 
-
-
+def ArticleEdit(request):
+    if request.method == "POST":
+        ueditorform = UEditorForm(request.POST)
+        user = request.user
+        if ueditorform.is_valid():
+            article = Article.objects.create(author_id=user.pk,
+                                             category_id=ueditorform.clean()['category'],
+                                             title=ueditorform.clean()['title'],
+                                             article_from=ueditorform.clean()['article_from'],
+                                             summary=ueditorform.clean()['summary'],
+                                             tags=ueditorform.clean()['tags'],
+                                             content=ueditorform.clean()['content'],
+                                             )
+            if article is not None:
+                user.topic_num += 1
+                user.save()
+                messages.success(request, '新密码设置成功！请重新登录')
+                return HttpResponseRedirect(reverse('index-view'))
+    else:
+        ueditorform = UEditorForm()
+    return render(request,'blog/article_edit.html',{'form': ueditorform})

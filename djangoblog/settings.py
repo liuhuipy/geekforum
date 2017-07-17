@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'xadmin',
     'DjangoUeditor',
     'crispy_forms',
-    'haystack',
+    #'haystack',
     'blog',
     'comments',
     'search',
@@ -52,12 +52,14 @@ INSTALLED_APPS = [
 
 ]
 
+'''
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+'''
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -144,7 +146,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -156,4 +157,24 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 DEFAULT_FROM_EMAIL = '1902246311@qq.com'
 
-PAGE_NUM = 8
+PAGE_NUM = 1
+
+
+UEDITOR_SETTINGS = {
+    "config": {},
+    "upload": {},
+}
+
+
+
+'''
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+'''
+
+#自动生成索引
+#HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

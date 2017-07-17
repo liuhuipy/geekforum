@@ -94,4 +94,6 @@ class CommentView(View):
                     datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 )
 
+        user.comment_num += 1
+        user.save()
         return redirect('article-view', article_id=article_id)

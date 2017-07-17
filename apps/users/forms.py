@@ -5,6 +5,7 @@ from django import forms
 from django.contrib import auth
 from .models import UserProfile
 
+from django.utils import timezone
 
 error_messages = {
     'username': {
@@ -102,21 +103,28 @@ class ResetPasswordForm(forms.Form):
     password = forms.CharField(min_length=6, max_length=16, error_messages=error_messages.get('password'))
     res_password = forms.CharField(required=False)
 
-    def __init__(self, request):
-        self.user = request.user
-        super(ResetPasswordForm, self).__init__(request.POST)
+    def __init__(self, *args, **kwargs):
+        self.user = None
+        super(ResetPasswordForm, self).__init__(*args,**kwargs)
 
-    def clean(self):
-        password_old = self.cleaned_data.get('password_old')
-        password = self.cleaned_data.get('password')
-        res_password = self.cleaned_data.get('res_password')
+    def get_user(self, request):
+        user = request.user
+        return user
 
-        if not (password_old and self.user.check_password[password_old]):
-            raise forms.ValidationError(u'当前输入旧密码有误')
+    def clean_res_password(self):
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('res_password')
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(u'两次输入密码不一致')
+        return password2
 
-        if password and res_password and password != res_password:
-            raise forms.ValidationError(u'两次输入新密码不一致')
-        return self.cleaned_data
+    def save(self, commit=True):
+        user = super(ResetPasswordForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        user.updated = timezone.now()
+        if commit:
+            user.save()
+        return user
 
 class ForgetPasswordForm(forms.Form):
     pass

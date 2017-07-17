@@ -32,19 +32,13 @@
                         <a href="javascript:;" style="padding:5px;" data-toggle="dropdown">
                             <img src="{{ MEDIA_URL }}{{ user.image }}" width="40" height="40">&nbsp;
                             {{ user.username }}
-                            <span class="badge" style="background-color: #3e8f3e;">45</span>
+                            <span class="badge" style="background-color: #3e8f3e;">{{ user.au }}</span>
                         </a>
                         <ul class="dropdown-menu navbar-right">
                             <li>
-                                <a href="{% url 'user-view' user.pk %}" target="_blank">
+                                <a href="{% url 'article-edit' %}" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span>
-                                    个人主页
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'reset-password' %}" target="_blank" data-toggle="modal">
-                                    <span class="glyphicon glyphicon-lock"></span>
-                                    更改密码
+                                    发表文章
                                 </a>
                             </li>
                             <li>

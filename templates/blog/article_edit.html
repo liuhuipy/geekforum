@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>{% block title %}文章发表{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    {{ form.media }}
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {% include "blog/nav.html" %}
+    <div id="main" class="container col-md-offset-2 col-md-8">
+        {% block main %}
+            <form method="POST" action="{% url 'article-edit' %}">
+            {% csrf_token %}
+                <div class="panel-title">
+                    <h2>发表文章</h2>
+                </div>
+                <div class="form-group">
+                    <label for="title">{{ form.title.label }}</label>
+                    {{ form.title }}
+                </div>
+                <div class="form-group">
+                    <label for="category">{{ form.category.label }}</label>
+                    {{ form.category }}
+                </div>
+                <div class="form-group">
+                    <label for="article_from">{{ form.article_from.label }}</label>
+                    {{ form.article_from }}
+                </div>
+                <div class="form-group">
+                    <label for="summary">{{ form.summary.label }}</label>
+                    {{ form.summary }}
+                </div>
+                <div class="form-group">
+                    <label for="tags">{{ form.tags.label }}</label>
+                    {{ form.tags }}
+                </div>
+                <div class="edit-area">
+                    <label for="content">正文</label>
+                    {{ form.content }}
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-danger">发 布</button>
+                </div>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -49,14 +49,13 @@ class UserProfile(AbstractUser):
     email = models.EmailField(max_length=64,verbose_name=u'邮箱',unique=True)
     password = models.CharField(max_length=128,verbose_name=u'密码')
     profile = models.TextField(max_length=200,verbose_name=u'简介',blank=True,null=True)
-    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default="default.jpg", verbose_name=u'用户头像')
+    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default="default.png", verbose_name=u'用户头像')
     au = models.IntegerField(default=0, verbose_name=u'用户活跃度')
 
     topic_num = models.IntegerField(default=0,verbose_name=u'文章数')
     visit_num = models.IntegerField(default=0,verbose_name=u'访问量')
     comment_num = models.IntegerField(default=0,verbose_name=u'总评论数')
 
-    email_verified = models.BooleanField(default=False, verbose_name=u'邮箱是否验证')
     is_active = models.BooleanField(default=True)
 
     create_time = models.DateTimeField(verbose_name=u'创建时间',default=timezone.now)
@@ -127,29 +126,6 @@ class Follower(models.Model):
     def __str__(self):
         return "%s following %s" % (self.user_a, self.user_b)
 
-
-class EmailVerified(models.Model):
-    user = models.OneToOneField(UserProfile, related_name='user', verbose_name=u'用户')
-    token = models.CharField(max_length=32, default=None, verbose_name=u"Email 验证 token")
-    timestamp = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        verbose_name = u'邮箱验证'
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return "%s@%s" % (self.user, self.token)
-
-    def generate_token(self):
-        year = self.timestamp.year
-        month = self.timestamp.month
-        day = self.timestamp.day
-        date = "%s-%s-%s" % (year, month, day)
-        token = hashlib.md5(str(self.user.id) + self.user.username + self.ran_str() + date).hexdigest()
-
-    def ran_str(self):
-        salt = ''.join(random.sample(string.ascii_letters + string.digits, 8))
-        return salt + SALT
 
 
 
