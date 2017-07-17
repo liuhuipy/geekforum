@@ -1,4 +1,8 @@
 
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+
 {% for article in article_list %}
     <div class="list-group-item blog-entry">
         <div class="entry media">
@@ -78,6 +82,8 @@
             </div>
         </div>
     </div>
+{% empty %}
+    <div class="no-article">暂时还没有发布的文章！</div>
 {% endfor %}
 
 

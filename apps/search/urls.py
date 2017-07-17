@@ -1,11 +1,11 @@
 __author__ = 'liuhui'
 
 
-from django.conf.urls import url, include
-
+from django.conf.urls import url
+from search import views
 
 urlpatterns = [
-    #url(r'^search/', include('haystack.urls')),
+    url(r'^search/', views.search, name='search'),
 ]
 
 

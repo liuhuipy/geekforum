@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'xadmin',
     'DjangoUeditor',
     'crispy_forms',
-    #'haystack',
+    'haystack',
     'blog',
     'comments',
     'search',
@@ -52,14 +52,14 @@ INSTALLED_APPS = [
 
 ]
 
-'''
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+        'PATH': os.path.join(BASE_DIR,'whoosh_index'),
     },
 }
-'''
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -176,5 +176,5 @@ HAYSTACK_CONNECTIONS = {
 }
 '''
 
-#自动生成索引
-#HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+#更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

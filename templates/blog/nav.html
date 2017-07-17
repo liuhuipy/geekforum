@@ -20,9 +20,9 @@
                 <li class=""><a href="{% url 'category-view' category.pk %}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="{% url 'search' %}" method="get">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" name="q" class="form-control" placeholder="请输入搜索关键字">
                 </div>
                 <button type="submit" class="btn btn-info">搜索</button>
             </form>
