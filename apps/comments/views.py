@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from comments.models import Comment
-from blog.models import Article, Notification
+from blog.models import Article
 
 # Create your views here.
 

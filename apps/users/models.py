@@ -45,11 +45,12 @@ class UserManage(BaseUserManager):
 
 
 class UserProfile(AbstractUser):
+
     username = models.CharField(max_length=32,verbose_name=u'用户名',unique=True)
     email = models.EmailField(max_length=64,verbose_name=u'邮箱',unique=True)
     password = models.CharField(max_length=128,verbose_name=u'密码')
     profile = models.TextField(max_length=200,verbose_name=u'简介',blank=True,null=True)
-    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default="default.png", verbose_name=u'用户头像')
+    image = models.ImageField(max_length=200,upload_to='user_images/%Y/%m/%d' ,default='default.png', verbose_name=u'用户头像')
     au = models.IntegerField(default=0, verbose_name=u'用户活跃度')
 
     topic_num = models.IntegerField(default=0,verbose_name=u'文章数')
@@ -97,6 +98,7 @@ class UserProfile(AbstractUser):
         return self.username
 
 
+
 class Banner(models.Model):
     title = models.CharField(max_length=100, verbose_name=u'标题')
     image = models.ImageField(upload_to='banner_images/%Y/%m/%d', max_length=100, verbose_name=u'轮播图')
@@ -111,23 +113,5 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Follower(models.Model):
-    user_a = models.ForeignKey(UserProfile, related_name="user_a", verbose_name=u'关注者')
-    user_b = models.ForeignKey(UserProfile, related_name="user_b", verbose_name=u'被关注者')
-    create_time = models.DateTimeField(default=timezone.now, verbose_name=u'创建时间')
-
-    class Meta:
-        unique_together = ('user_a', 'user_b')
-        verbose_name = u'用户关注'
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return "%s following %s" % (self.user_a, self.user_b)
-
-
-
-
 
 

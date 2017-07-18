@@ -1,14 +1,13 @@
-Django                  1.10.4
-Pillow					4.1.1
-django-crispy-forms		1.6.1
-django-debug-toolbar	1.8
-django-formtools		2.0
-django-pure-pagination	0.3.0
-future					0.16.0
-httplib2				0.10.3
-olefile					0.44
-setuptools				36.0.1
-six						1.10.0
-wheel					0.29.0
-DjangoUeditor			1.8.143
-humanize				0.5.1
+Django==1.10.4
+Pillow==4.1.1
+django-crispy-forms==1.6.1
+django-debug-toolbar==1.8
+django-formtools==2.0
+django-pure-pagination==0.3.0
+future==0.16.0
+httplib2==0.10.3
+olefile==0.44
+setuptools==36.0.1
+six==1.10.0
+wheel==0.29.0
+humanize==0.5.1
