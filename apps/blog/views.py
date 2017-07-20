@@ -1,6 +1,7 @@
+#coding:utf8
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.views.generic import ListView, TemplateView, View, DetailView
+from django.http import HttpResponseRedirect
+from django.views.generic import ListView, DetailView
 from blog.models import Article, Category, Link
 from comments.models import Comment
 from users.models import UserProfile

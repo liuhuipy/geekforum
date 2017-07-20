@@ -1,3 +1,4 @@
+#coding:utf8
 from django.db import models
 from django.conf import settings
 from blog.models import Article

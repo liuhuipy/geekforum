@@ -1,4 +1,4 @@
-from datetime import datetime
+#coding:utf8
 
 from django.db import models
 from djangoblog import settings

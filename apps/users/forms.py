@@ -1,3 +1,4 @@
+#coding:utf8
 __author__ = 'liuhui'
 
 import random

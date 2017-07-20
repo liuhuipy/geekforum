@@ -1,6 +1,4 @@
-from PIL import Image
-import random
-
+#coding:utf8
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponsePermanentRedirect
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
