@@ -72,12 +72,25 @@ python manage.py createsuperuser              #创建超级用户
 python manage.py runserver                         #运行项目
 ```
 * 访问127.0.0.1:8000
-* 开始什么数据都没有
-
+* 开始什么数据都没有,背景图片有点丑，建议换一个。。。
+![](static/img/chushi.png)
 * 先进入后台管理
-
+![](static/img/houtailogin.png)
+![](static/img/houtai.png)
 * 创建文章类型
-
+![](static/img/articlecategory.png)
+![](static/img/categoryedit.png)
+![](static/img/categoryeditsuccess.png)
 * 添加文章
-
+![](static/img/articleedit2.png)
+* 用户注册，登录
+![](static/img/register.png)
+* 头像设置
+![](static/img/touxiang.png)
+* 发表文章
+![](static/img/articleedit.png)
+![](static/img/articleedit1.png)
 * 再次访问，大功告成！！！(其他操作略。。。)
+![](static/img/index.png)
+![](static/img/comment.png)
+
