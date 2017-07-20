@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'xadmin',
     'DjangoUeditor',
     'crispy_forms',
-    'haystack',
     'blog',
     'comments',
     'search',
@@ -150,13 +149,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-#Email setting
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.qq.com"
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-DEFAULT_FROM_EMAIL = '1902246311@qq.com'
-
 PAGE_NUM = 10
 
 
@@ -167,15 +159,3 @@ UEDITOR_SETTINGS = {
 
 
 
-'''
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
-    }
-}
-'''
-
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
-#更新索引
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
