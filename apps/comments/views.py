@@ -38,13 +38,7 @@ class CommentView(View):
                     user.username,
                     parent.article.title,
                 )
-                Notification.objects.create(
-                    title=info,
-                    text=text,
-                    from_user=user,
-                    to_user=parent.user,
-                    url='/article/'+article_id+'.html',
-                )
+             
             except Comment.DoesNotExist:
                 logger.error(u'[CommentView]评论引用错误:%s' % parent_str)
                 return HttpResponse(u'请勿修改评论代码！', status=403)
