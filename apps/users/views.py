@@ -22,7 +22,7 @@ def login(request):
             user = login_form.get_user()
             if user is not None:
                 auth_login(request, user)
-                return HttpResponsePermanentRedirect(reverse('index-view'))
+                return HttpResponsePermanentRedirect(request.session['LoginForm'])
         else:
             auth_logout(request)
             print(login_form.errors)
@@ -31,12 +31,13 @@ def login(request):
     else:
         login_form = LoginForm()
         user = None
+        request.session['LoginForm'] = request.META.get('HTTP_REFERER', '/')
     return render(request, 'users/login.html')
 
 @csrf_protect
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect(reverse("index-view"))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
 
 @csrf_protect
 def register(request):

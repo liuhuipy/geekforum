@@ -21,7 +21,8 @@ class CommentView(View):
             logger.error(
                 u'[CommentView]当前用户非活动用户：[{}]'.format(user.username)
             )
-            return HttpResponse(u'请登录!', status=403)
+            request.session['LoginForm'] = request.META.get('HTTP_REFERER', '/')
+            return render(request,'users/login.html')
 
         article_id = self.kwargs.get('article_id', '')
         article = Article.objects.get(id=article_id)
