@@ -6,7 +6,7 @@
 * 文章有类型，标签，可以通过类型标签来筛选文章
 * 热门文章，最新评论，友情链接
 * 通过发表文章的数量，访问量和点赞数排出活跃的用户
-* 参考了https://github.com/billvsme/vmaig_blog和https://github.com/zaxlct/imooc-django等，非常感谢他们。
+* 参考了https://github.com/billvsme/vmaig_blog 和 https://github.com/zaxlct/imooc-django等，非常感谢他们。
 
 # 使用方法
 1）安装python3.5,pip,virtualenv和virtualenvwrapper
