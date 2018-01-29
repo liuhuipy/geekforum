@@ -19,19 +19,12 @@
     padding: 10px;
 }
 
+.comment-info {
+   padding: 10px;
+}
+
 .comment-tx {
     float: left;
-}
-
-.comment-content {
-    padding-left:100px;
-    word-break: break-all;
-}
-
-.comment-content h1{
-    margin:0px;
-    font-size:15px;
-    padding-bottom:10px;
 }
 
 .comment-edit {
