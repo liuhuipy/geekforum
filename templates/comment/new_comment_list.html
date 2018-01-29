@@ -7,7 +7,7 @@
                 <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#new_comment_list"></span>
             </h3>
         </div>
-        <div id="new_comment_list" class="list-group collapse in" style="padding: 10px;">
+        <div id="new_comment_list" class="list-group collapse in">
             {% for comment in new_comment_list %}
                 <li class="list-group-item clearfix">
                 <div class="comment-tx">
@@ -17,17 +17,17 @@
                         <img src="/static/images/aobama.png" width="40" height="40">
                     {% endif %}
                 </div>
-                <div class="comment-content">
-                    <div class="comment-username">
-                        <a href="#">{{ comment.user.username }} 评论：</a>
+                <div class="comment-info">
+                    <div>
+                        <a href="#" style="color: #438904;font-size: 14px;">{{ comment.user.username }} 评论：</a>
                     </div>
                 </div>
-                <div class="comment-content">
-                    <a href="{% url 'article-view' comment.article.pk %}">
+                <div class="comment-info">
+                    <a href="{% url 'article-view' comment.article.pk %}" style="font-size: 12px;">
                         {% autoescape on%}
-                        {{comment.text|slice:"15" }}
+                        {{comment.text|slice:"12" }}
                         {% endautoescape %}
-                        {% if comment.text|length > 15%}
+                        {% if comment.text|length > 12 %}
                         ......
                         {% endif %}
                     </a>
