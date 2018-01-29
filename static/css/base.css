@@ -1,5 +1,5 @@
 body {
-    background: url("/static/images/bg1.jpg") repeat scroll 0% 0% transparent;
+    background: url("/static/images/bg.jpg") repeat scroll 0% 0% transparent;
     background-size: 100%;
     background-attachment: fixed;
 }
