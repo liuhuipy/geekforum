@@ -4,7 +4,9 @@ __author__ = 'liuhui'
 from django import forms
 from DjangoUeditor.widgets import UEditorWidget
 from DjangoUeditor.forms import UEditorField
+
 from blog.models import Article, Category
+
 
 class UEditorForm(forms.Form):
 
