@@ -26,8 +26,8 @@ class Category(models.Model):
     name = models.CharField(max_length=32, verbose_name='类型名称')
     rank = models.IntegerField(default=0, verbose_name='排序')
 
-    create_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')
-    update_time = models.DateTimeField(blank=True, null=True, verbose_name='修改时间')
+    create_time = models.DateTimeField(default=timezone.now, verbose_name=u'创建时间')
+    update_time = models.DateTimeField(verbose_name=u'修改时间', blank=True, null=True)
 
     class Meta:
         verbose_name = '文章类型'
