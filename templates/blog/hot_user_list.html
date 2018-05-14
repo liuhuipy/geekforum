@@ -4,15 +4,16 @@
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-user"></span>
                 活跃用户
+                <span class="glyphicon glyphicon-remove btn panel-close pull-right"></span>
                 <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#hot-user-list"></span>
             </h3>
         </div>
         <div id="hot-user-list" class="list-group" style="padding: 10px;">
             {% for user in hot_user_list %}
                 {% if user.image %}
-                    <img class="user-avatar" src="{{ MEDIA_URL }}{{ user.image }}">
+                    <a href=""><img class="user-avatar" src="{{ MEDIA_URL }}{{ user.image }}"></a>
                 {% else %}
-                    <img class="user-avatar" src="/static/images/aobama.png">
+                    <a href=""><img class="user-avatar" src="/static/images/aobama.png"></a>
                 {% endif %}
             {% endfor %}
         </div>

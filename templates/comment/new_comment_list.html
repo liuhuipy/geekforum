@@ -4,10 +4,11 @@
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-comment"></span>
                 最新评论
-                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#new_comment_list"></span>
+                <span class="glyphicon glyphicon-remove btn panel-close pull-right"></span>
+                <span class="glyphicon glyphicon-chevron-up btn panel-collapse pull-right" data-toggle="collapse" data-target="#new-comment-list"></span>
             </h3>
         </div>
-        <div id="new_comment_list" class="list-group collapse in">
+        <div id="new-comment-list" class="list-group collapse in">
             {% for comment in new_comment_list %}
                 <li class="list-group-item clearfix">
                 <div class="comment-tx">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="comment-info">
                     <div>
-                        <a href="#" style="color: #438904;font-size: 14px;">{{ comment.user.username }} 评论：</a>
+                        <a href="#" style="color: #438904;font-size: 14px;">{{ comment.user.username }} </a>评论：
                     </div>
                 </div>
                 <div class="comment-info">
