@@ -4,7 +4,6 @@ from djangoblog import settings
 from django.utils import timezone
 
 from DjangoUeditor.models import UEditorField
-from categorys.models import Category
 
 STATUS = {
     0: u'发表',
@@ -22,6 +21,22 @@ IS_READ = {
     1: u'已读',
 }
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=32, verbose_name='类型名称')
+    rank = models.IntegerField(default=0, verbose_name='排序')
+
+    create_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')
+    update_time = models.DateTimeField(blank=True, null=True, verbose_name='修改时间')
+
+    class Meta:
+        verbose_name = '文章类型'
+        verbose_name_plural = verbose_name
+        ordering = ['rank', '-create_time']
+
+    def __str__(self):
+        return self.name
+    
 
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'作者')
