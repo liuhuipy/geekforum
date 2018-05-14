@@ -2,19 +2,19 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
+from blog.models import Article, Category, Link
+from comments.models import Comment
+from users.models import UserProfile
 from djangoblog import settings
 from django.core.cache import caches
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 
-from blog.models import Article, Category, Link
-from comments.models import Comment
-from users.models import UserProfile
 from blog.forms import UEditorForm
 
 cache = caches['default']
-# Create your views here.
 
+# Create your views here.
 
 class BaseMixin(object):
     def get_context_data(self, *args, **kwargs):
@@ -53,7 +53,7 @@ class ArticleDetailView(BaseMixin, DetailView):
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
 
-        # 文章点击数 + 1
+        #文章点击数 + 1
         obj.reading_num += 1
         obj.save()
 
@@ -85,12 +85,11 @@ class TagView(BaseMixin, ListView):
 
     def get_queryset(self):
         tag = self.kwargs.get('tag', '')
-        article_list = Article.objects.only('tag').filter(tags__icontains=self.kwargs['tag'], status=0)
+        article_list = Article.objects.only('tags').filter(tags__icontains=self.kwargs['tag'], status=0)
         return article_list
 
     def get_context_data(self, **kwargs):
         return super(TagView, self).get_context_data(**kwargs)
-
 
 def ArticleEdit(request):
     if request.method == "POST":

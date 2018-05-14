@@ -1,4 +1,4 @@
-# 主要功能介绍(演示网站：http://120.79.153.16)
+# 主要功能介绍(演示网站：http://122.152.194.126)
 * 基于python3.5,django1.10.4的多用户博客论坛系统，集成了xadmin的后台管理，采用了djangoUeditor富文本处理文章。
 * 多用户登录，注册，密码修改,上传头像
 * 每个用户可以发表文章，评论别人的文章
@@ -9,30 +9,26 @@
 * 参考了https://github.com/billvsme/vmaig_blog 和 https://github.com/zaxlct/imooc-django 等，非常感谢他们。
 
 # 使用方法
-1）安装python3.5,pip,virtualenv
-* 安装python3.5和pip
+1）安装python3.5,pip,virtualenv和virtualenvwrapper
+* 安装python3.5和pip（略）
+* 安装virtualenv和virtualenvwrapper
 ```
-yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel
-wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
-tar -zxvf Python-3.5.1.tgz
-mv Python-3.5.1 /usr/local
-cd /usr/local/Python-3.5.1/
-./configure
-make && make install
-ln -s /usr/local/bin/python3.5 /usr/bin/python3
-```
-* 安装virtualenv
-```
-pip3 install virtualenv
-virtualenv dgblog
-source dgblog/bin/activate
+pip install virtualenv virtualenvwrapper
+vim ~/.bash_profile 
+添加以下3行：
+export WORKON_HOME=~/Envs     #虚拟环境存放目录
+export       VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5  #虚拟环境使用的python路径
+source /Library/Frameworks/Python.framework/Versions/3.5/bin/virtualenvwrapper.sh  #virtualenvwrapper初始化脚本路径
+退出，执行
+source ~/.bash_profile
+mkvirtualenv dgblog           #创建虚拟环境
+workon dgblog                   #使用该虚拟环境
+deactivate                           #退出虚拟环境
+rmvirtualenv dgblog            #删除该虚拟环境
 ```
 2）安装DjangoUeditor3（修改版，支持python3.5）
 * 进入虚拟环境dgblog，下载git
 ```
-yum install git -y
-mkdir dgblogProject
-cd dgblogProject
 git clone https://github.com/liuhuipy/DjangoUeditor3.git
 (dgblog) [root@VM_85_24_centos PyProjects]# cd DjangoUeditor3/
 (dgblog) [root@VM_85_24_centos DjangoUeditor3]# ls
@@ -72,7 +68,6 @@ wheel (0.29.0)
 ```
 python manage.py makemigrations
 python manage.py migrate
-python manage.py collectstatic
 python manage.py createsuperuser              #创建超级用户  
 python manage.py runserver                         #运行项目
 ```

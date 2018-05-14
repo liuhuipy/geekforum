@@ -20,7 +20,6 @@
                 <li class=""><a href="{% url 'category-view' category.pk %}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     <li class="dropdown">
@@ -31,19 +30,19 @@
                         </a>
                         <ul class="dropdown-menu navbar-right">
                             <li>
-                                <a href="{% url 'article-edit' %}">
+                                <a href="{% url 'article-edit' %}" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span>
                                     发表文章
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url 'updateimage' %}">
+                                <a href="{% url 'updateimage' %}" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span>
                                     更改头像
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url 'password' %}">
+                                <a href="{% url 'password' %}" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span>
                                     密码修改
                                 </a>
@@ -65,7 +64,7 @@
                     </li>
                 {% endif %}
             </ul>
-            <form class="navbar-form navbar-right" id="searchform" action="{% url 'search' %}" method="get" role="search">
+	    <form class="navbar-form navbar-right" id="searchform" action="{% url 'search' %}" method="get" role="search">
                 <div class="form-group">
                     <input type="text" name="q" class="form-control" placeholder="请输入搜索关键字">
                 </div>

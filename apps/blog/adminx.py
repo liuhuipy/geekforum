@@ -13,7 +13,6 @@ class ArticleAdmin(object):
     style_fields = {'content': 'ueditor'}
     relfield_style = 'fk-ajax'
 
-
 class CategoryAdmin(object):
     list_display = ['name', 'rank', 'create_time', 'update_time']
     search_fields = ['name', 'rank']

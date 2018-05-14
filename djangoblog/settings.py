@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'comments',
     'search',
     'users',
+    # 'gunicorn',
 ]
 
 
@@ -90,9 +91,14 @@ AUTH_USER_MODEL = 'users.UserProfile'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangoblog',
+	'USER': 'root',
+	'PASSWORD': 'aixocm',
+	'PORT': 3306,
+	'HOST': '127.0.0.1',
     }
+
 }
 
 
@@ -136,7 +142,7 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+   os.path.join(BASE_DIR, 'static'),
 )
 
 MEDIA_URL = '/media/'
@@ -144,4 +150,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 PAGE_NUM = 10
-

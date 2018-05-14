@@ -7,14 +7,13 @@
 <div id="block-main">
     {% block main %}
         {% block left %}
-            <div id="left-list" class="col-sm-12 col-xs-12 col-md-8 col-lg-9">
+            <div id="left-list" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
                 {% include 'blog/home_post.html' %}
                 {% if page_obj %}
                     {% include 'blog/pagination.html' %}
                 {% endif %}
             </div>
         {% endblock %}
-
         {% block right %}
             {% include 'blog/right.html' %}
         {% endblock %}

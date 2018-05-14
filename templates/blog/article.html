@@ -15,7 +15,7 @@
                 <span class="meta">
                     {% if article.get_tags %}
                         {% for tag in article.get_tags %}
-                            <a href="{% url 'tag-view' tag.id %}" class="btn btn-primary btn-xs" style="">{{ tag }}</a>
+                            <a href="" class="btn btn-primary btn-xs" style="">{{ tag }}</a>
                         {% endfor %}
                     {% endif %}
                 </span>
@@ -30,6 +30,10 @@
                 <span class="meta">
                     <span class="glyphicon glyphicon-eye-open"></span>
                     {{ article.reading_num }}
+                </span>
+                <span class="meta">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    {{ article.like_num }}
                 </span>
             </div>
             <div class="article-title">
