@@ -158,7 +158,6 @@ class Workplace extends PureComponent {
       <PageHeaderWrapper
         loading={currentUserLoading}
         content={pageHeaderContent}
-        extraContent={extraContent}
       >
         <Row gutter={24}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24}>
