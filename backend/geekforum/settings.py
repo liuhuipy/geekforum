@@ -40,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'corsheaders',
+    'drf_yasg',
+    'common',
 ]
 
 
@@ -47,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -67,7 +74,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #配置了这个后，就会把最底下的MEDIA_URL注册到html，这样html就能使用这个变量了
                 'django.template.context_processors.media',
             ],
         },
@@ -75,7 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'geekforum.wsgi.application'
-# AUTH_USER_MODEL = 'users.UserProfile'
+AUTH_USER_MODEL = 'common.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -86,19 +92,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# 使用mysql
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'geekforum',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'PORT': 3306,
-#         'HOST': '127.0.0.1',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
