@@ -9,6 +9,6 @@ httplib2==0.10.3
 olefile==0.44
 setuptools==36.0.1
 six==1.10.0
-wheel==0.29.0
+wheel==0.38.1
 humanize==0.5.1
 PyMySQL==0.8.1
